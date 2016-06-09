@@ -66,11 +66,11 @@ org.List = function(id,list_name)
 };
 
 // Todo Object
-org.Todo = function(id,text,complete)
+org.Todo = function(id,text)
 {
 	this.id = id;
 	this.text = text;
-	this.complete = complete;
+	this.complete = false;
 };
 
 // Function Bodies
@@ -271,9 +271,13 @@ org.list_functions =
 		var todos = list["todos"];
 		var id = list["id"];
 		var todo_callback_counter = 0;
+		var markup_list = document.getElementById("the-list");
+		var list_title = document.getElementById("list-name");
+		var list_name = document.createTextNode(list["list_name"]);
 
-		document.getElementById("the-list").setAttribute("data-list-id", id);
-
+		markup_list.setAttribute("data-list-id", id);
+		list_title.innerHTML = '';
+		list_title.appendChild(list_name);
 
 		// Iterating over each todo and creating markup
 		todos.forEach( function(todo) {
@@ -298,10 +302,10 @@ org.list_functions =
 			// Adding todo to respective section of list
 			if (todo["complete"] === true) {
 				input.setAttribute("checked", "checked");
-				org.list_functions.completed.insertBefore(entry, org.list_functions.completed.childNodes[0]);
+				org.list_functions.completed.insertBefore(entry, org.list_functions.completed.childNodes[org.list_functions.completed.childNodes.length-2]);
 			}
 			else {
-				org.list_functions.active.insertBefore(entry, org.list_functions.active.childNodes[0]);
+				org.list_functions.active.insertBefore(entry, org.list_functions.active.childNodes[org.list_functions.active.childNodes.length-2]);
 			}
 
 			todo_callback_counter++;
@@ -345,11 +349,41 @@ org.list_functions =
 	},
 
 	/**
-	 * Creates new todo and adds it to todo array inside of list
+	 * Creates new todo and adds it to todo array inside of list / creates markup
 	 */
 	create_todo: function(text)
 	{
-		
+		var current_list = org.list_functions.retrieve_list(parseInt(document.getElementById("the-list").getAttribute("data-list-id")));
+		var new_id = current_list["todos"].length + 1;
+		var new_todo = new org.Todo(new_id, text);
+
+		// Updating in array
+		for (var i in org.list_data) {
+			if (parseInt(org.list_data[i]["id"]) === parseInt(current_list["id"])) {
+				org.list_data[i]["todos"].push(new_todo);
+			}
+		}
+
+		// Updating in markup
+			var entry = document.createElement("div");
+			var input = document.createElement("input");
+			var label = document.createElement("label");
+			var label_text = document.createTextNode(new_todo["text"]);
+
+			entry.classList.add("list-entry");
+			entry.setAttribute("data-todo-id", new_todo["id"]);
+
+			input.type = "checkbox";
+			input.name = "item-" + new_todo["id"];
+			input.id = "item-" + new_todo["id"];
+
+			label.setAttribute("for", "item-" + new_todo["id"]);
+			label.appendChild(label_text);
+
+			entry.appendChild(input);
+			entry.appendChild(label);
+
+			org.list_functions.active.insertBefore(entry, org.list_functions.active.childNodes[org.list_functions.active.childNodes.length-2]);
 	},
 
 
