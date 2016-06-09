@@ -1,0 +1,453 @@
+/* ----- Variables ----- */
+@white: #FFFFFF;
+
+// Greys
+@alabaster: #F9F9FB;
+@sherpaBlue: #034A4D;
+
+// Base
+@raffia: #E5DFB7;
+ 
+// Accent
+@chelseaCucumber: #A39A5A;
+
+/* ----- Mixins ----- */
+.top-styles {
+	position: fixed;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	height: 70px;
+	z-index: 3;
+
+	&:after {
+		content: '';
+	    position: absolute;
+	    width: 100%;
+	    bottom: 0;
+	    height: 15px;
+	    margin-bottom: -15px;
+	    z-index: 4999999;
+	    left: 0;
+	    background: -owg-linear-gradient(rgba(0,0,0,.2),transparent);
+	    background: -webkit-linear-gradient(rgba(0,0,0,.2),transparent);
+	    background: -moz-linear-gradient(rgba(0,0,0,.2),transparent);
+	    background: -o-linear-gradient(rgba(0,0,0,.2),transparent);
+	    background: linear-gradient(rgba(0,0,0,.2),transparent);
+	}		
+}
+
+.force-padding(@top, @right, @bottom, @left) {
+		padding-top: @top !important;
+		padding-right: @right !important;
+		padding-bottom: @bottom !important;
+		padding-left: @left !important;
+}
+
+/* ----- General Styles ----- */
+@font-face {
+    font-family: 'robotoregular';
+    src: url('../fonts/roboto-regular-webfont.eot');
+    src: url('../fonts/roboto-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/roboto-regular-webfont.woff2') format('woff2'),
+         url('../fonts/roboto-regular-webfont.woff') format('woff'),
+         url('../fonts/roboto-regular-webfont.ttf') format('truetype'),
+         url('../fonts/roboto-regular-webfont.svg#robotoregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.visuallyhidden{border: 0; clip: rect(0 0 0 0); height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; width: 1;}
+
+html {
+	height: 100%;
+	overflow:hidden;
+}
+
+body {
+	position: relative;
+	font-family: 'Helvetica Neue', Helvetica,Arial,sans-serif;
+	font-size: 16px; line-height: 1.5em;
+	height: 100%;
+	overflow: hidden;
+	background: darken(@alabaster, 10%);
+}
+
+
+h1,h2 {
+	display: inline-block;
+	margin: 0;
+	font-weight: normal;
+}
+
+h1 {
+	line-height: 1.25em;
+}
+
+
+ul { 
+	margin: 0;
+	padding: 0;
+}
+
+li { list-style-type: none; }
+
+a {
+	text-decoration: none;
+}
+
+fieldset {
+	margin: 0; 
+	border: 0;
+	padding: 0;
+}
+
+.btn {
+	background: @chelseaCucumber;
+
+	transition: background .15s;
+
+	&:hover { background: darken(@chelseaCucumber, 5%) !important; }
+}
+
+/* ----- Header ----- */
+header {
+	background: darken(@alabaster, 10%);
+	text-align: center;
+	.top-styles;
+}
+
+#hamburger {
+	display: none;
+}		
+
+/* ----- Sidebar ----- */
+#sidebar {
+	position: fixed;
+	height: 100%;
+	left: 0;
+	background: @alabaster;
+
+	div {
+		.top-styles;
+
+		img {
+			display: inline-block;
+			margin-right: 20px;
+			vertical-align: middle;
+		}
+
+		h2 {
+			vertical-align: middle;
+			font-size: 20px;
+		}
+	}
+
+	nav {
+		height: 100%;
+		padding-top: 100px;
+		position: relative;
+		z-index: 1;
+
+		li {
+			border-top: 1px solid darken(@alabaster, 20%);
+
+			&:nth-last-of-type(2) { 
+				border-bottom: 1px solid darken(@alabaster, 20%); 
+			}
+
+			
+
+			a {
+				display: block;
+				padding: 5px;
+
+				&.active { font-weight: bold; }
+
+				&.btn {
+					border: 0;
+					text-align: center;
+					color: #FFF;
+					background: @chelseaCucumber;
+					height: 40px;
+					font-size: 40px; line-height: 23px;
+					border-bottom-right-radius: 5px;
+					border-bottom-left-radius: 5px;
+				}
+			}
+		}
+
+		input#new-list-name { 
+		    padding-left: 5px;
+		    width: 100%;
+		}
+	}
+}
+
+/* ----- List Content ----- */
+#the-list {
+	padding-top: 25px;
+	overflow-y: auto;
+	background: darken(@alabaster, 10%);
+
+	h2 {
+		display: block;
+		text-align: center;
+		margin-bottom: 20px;
+	}
+
+	div { position: relative; }
+
+	.btn {
+		display: inline-block;
+		position: absolute;
+	    top: 0; right: 0;
+	    height: 100%;
+	    width: 15%;
+	    border-top-right-radius: 5px;
+	    border-bottom-right-radius: 5px;
+
+		span {
+			height: 100%;
+			display: inline-flex;
+			align-items: center;
+			line-height: 100%;
+			color: #fff;
+			justify-content: center;
+			width: 100%;
+			font-size: 20px;
+		}
+	}
+
+	input { 
+		width: 100%; 
+		background-color: rgba(3, 74, 77,.09);
+		border: 0;
+		border-radius: 5px;
+		padding: 15px 17% 15px 15px;
+
+		&:focus {
+			outline: 0;
+			border: none;
+		}
+	}
+}
+
+div {	
+	margin-bottom: 10px;
+}
+
+#active, #complete {
+	overflow-y: auto;
+	
+	> div { text-align: center; }
+}
+
+#active {
+	div {
+		position: relative;
+
+		a {
+			display: inline-flex;
+			justify-content: center;
+			align-content: center;
+		    position: absolute;
+		    top: 0;
+		    right: 0;
+		    height: 100%;
+		    width: 16%;
+		    border-top-right-radius: 5px;
+		    border-bottom-right-radius: 5px;
+
+		    span {
+		    	color: @white;
+		    	font-size: 50px; line-height: 42px;
+		    }
+		}
+	}
+}
+
+.list-entry {
+	position: relative;
+    background: rgba(255,255,255,0.4);
+    margin-bottom: 5px;
+    border-radius: 5px;
+    padding: 5px 10px 5px 35px;
+    box-shadow: 1px 1px 1px 0px grey;
+    width: 99.8%;
+    opacity: 1;
+	transition: opacity .5s;
+
+	input[type=checkbox] {
+		display: none;
+
+		&:checked + label {
+			text-decoration: line-through;
+			color: darken(@alabaster,30%);
+		}
+	}
+
+	label {
+		display: block;
+		text-align: left;
+	}
+
+	input[type=checkbox] + label:before {
+		position: absolute;
+		display: inline-block;
+		content: '';
+		height: 18px; width: 18px;
+		background: #FFF;
+		top: 50%; left: 6px;
+		transform: translate(0, -50%);
+	    border-radius: 5px;
+	    box-shadow: 0px 0px 0px 2px grey;
+	}
+
+	input[type=checkbox]:checked + label:after {
+		position: absolute;
+		display: inline-block;
+		content: '';
+		height:14px; width: 14px;
+		border-radius: 4px;
+		background: @chelseaCucumber;
+		left: 8px;
+		top: 50%;
+		transform: translate(0, -50%);
+	}	
+}
+
+
+/* ----- Footer ----- */
+footer {
+	position: absolute !important;
+	bottom: 0;
+	height: 35px;
+	padding-top: 5px;
+	background: darken(@alabaster, 30%);
+	z-index: 3;
+
+	a { 
+		float: left;	
+	
+		&#about {
+		    height: 25px;
+		    width: 25px;
+		    background: @alabaster;
+		    text-align: center;
+		    font-size: 12px;
+		    margin-bottom: 6px;
+		    color: @chelseaCucumber;
+		    font-weight: bold;
+		    border: 1px solid @chelseaCucumber;			
+		}
+	}
+
+	ul { 
+		float: right; 
+		
+		li {
+			display: inline-block;
+
+			&:first-of-type { 
+				margin-right: 5px; 
+			}
+		}
+	}
+	
+	svg{
+		height: 25px; width: 25px;
+	}
+}
+
+
+/*  Responsive
+=============================================*/
+@media only screen and (max-width: 768px) {	
+	/* ----- Header ----- */
+	header {
+		height: 45px;
+		.force-padding(0,0,0,0);
+		
+		h2 {
+			display: none;
+		}
+	}
+
+	#hamburger {
+		display: inline-block;
+		width: 25px;
+
+		position: absolute;
+		top: 50%;
+		left: 10px;
+		transform: translate(0, -50%);
+
+		span{
+			display: block;
+			border-top: 4px solid black;
+			
+			transition: all .4s;
+
+			&:not(:last-of-type) { margin-bottom: 3px; }
+		}
+
+		&.open {
+			span:first-of-type{
+				transform: translate3d(0,7px,0) rotate(45deg);
+			}
+			span:nth-of-type(2) {
+				opacity: 0;
+			}
+			span:last-of-type {
+				transform: translate3d(0,-7px,0) rotate(-45deg);
+			}
+		}
+	}
+
+	/* ----- Sidebar ----- */
+	#sidebar {
+		position: absolute;
+		transition: opacity .3s;
+		z-index: -1;
+		padding-top: 60px;
+
+		background: darken(@alabaster, 10%);
+
+		div {
+			position: relative !important;
+			&:after { display: none; }
+		}
+
+		nav {
+			padding-top: 20px;
+		}
+
+		&.open {
+			z-index: 1;
+		}
+	}	
+
+	/* ----- List Content ----- */
+	#the-list {
+		padding-top: 25px;
+		padding-bottom: 50px;
+		transition: transform .4s;	
+		z-index: 2;
+
+		&:after {
+			display: block;
+			content: '';
+			position: absolute;
+			top: 0; left: 0;
+			background-color: rgba(0,0,0,.6);
+			opacity: 0;
+			height: 0; width: 0;
+			transition: opacity .4s;
+		}
+
+		&.open {
+			transform: translate3d(66%,0,0);
+			box-shadow: inset 5px 5px 5px 5px rgba(0,0,0,.3);
+		}
+	}
+}

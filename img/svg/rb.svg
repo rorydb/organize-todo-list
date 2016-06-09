@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 19.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 25.1 25" style="enable-background:new 0 0 25.1 25;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#E6E7E8;stroke:#000000;stroke-linecap:round;stroke-miterlimit:10;}
+	.st1{font-family:'MyriadPro-Regular';}
+	.st2{font-size:12px;}
+</style>
+<font horiz-adv-x="2048">
+<!-- Helvetica is a registered trademark of Linotype AG -->
+<!-- Copyright: Copyright 2016 Adobe System Incorporated. All rights reserved. -->
+<font-face font-family="MyriadPro-Regular" units-per-em="2048" underline-position="-155" underline-thickness="101"/>
+<missing-glyph horiz-adv-x="1298" d="M66,0l0,1469l1166,0l0,-1469M1048,184l0,1101l-798,0l0,-1101z"/>
+<glyph unicode="B" horiz-adv-x="1366" d="M708,848C792,848 857,860 904,883C977,920 1014,986 1014,1081C1014,1177 975,1242 897,1275C853,1294 788,1303 701,1303l-355,0l0,-455M775,170C897,170 984,205 1036,276C1069,321 1085,375 1085,438C1085,545 1037,617 942,656C891,677 824,687 741,687l-395,0l0,-517M151,1469l631,0C954,1469 1076,1418 1149,1315C1192,1254 1213,1184 1213,1105C1213,1012 1187,936 1134,877C1107,846 1067,817 1016,791C1091,762 1148,730 1185,694C1251,630 1284,542 1284,429C1284,334 1254,249 1195,172C1106,57 965,0 772,0l-621,0z"/>
+<glyph unicode="R" horiz-adv-x="1479" d="M839,796C932,796 1006,815 1061,852C1115,889 1142,957 1142,1054C1142,1159 1104,1230 1028,1268C987,1288 933,1298 865,1298l-486,0l0,-502M180,1469l680,0C972,1469 1064,1453 1137,1420C1275,1357 1344,1242 1344,1073C1344,985 1326,913 1290,857C1253,801 1202,756 1137,722C1194,699 1238,668 1267,630C1296,592 1312,530 1315,445l7,-197C1324,192 1329,150 1336,123C1348,76 1369,46 1400,33l0,-33l-244,0C1149,13 1144,29 1140,49C1136,69 1133,108 1130,165l-12,245C1113,506 1078,570 1011,603C973,621 913,630 832,630l-453,0l0,-630l-199,0z"/>
+</font>
+
+	<g>
+	<circle class="st0" cx="12.5" cy="12.6" r="11.8"/>
+	<text transform="matrix(1 0 0 1 5.8525 16.143)" class="st1 st2">RB</text>
+</g>
+</svg>

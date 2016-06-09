@@ -1,0 +1,95 @@
+* { box-sizing: border-box; }
+*:before, *:after { box-sizing: inherit; }
+
+
+/*  Simple Grid for a Simple Site 
+=============================================*/
+.container {
+	width: 100%;
+	margin: 0 auto;
+}
+
+.container:after { content: "\0020"; display: block; height: 0; clear: both; visibility: hidden; }
+
+.column { 
+	position: relative;
+	float: left; 
+	}
+.column { 
+	padding-right: 20px;
+	padding-left: 20px; 
+}
+
+
+.column.fourth { width: 25%; }
+.column.half { width: 50%; }
+.column.three-fourth { width: 75%; }
+.column.full { width: 100%; }
+
+.column.third { width: 33% }
+.column.two-third { width: 66%; }
+
+.column.alpha { padding-left: 0; }
+.column.omega { padding-right: 0; }
+
+/* Clear Fix */
+.clearfix { zoom: 1; }
+
+.clearfix:before,
+.clearfix:after {
+    content: '\0020';
+    display: block;
+    overflow: hidden;
+    visibility: hidden;
+    width: 0;
+    height: 0; 
+}
+
+.clearfix:after { clear: both; }
+
+.push-fourth { left: 25%; }
+.push-half { left: 50%; }
+.push-three-fourth { left: 75%; }
+.push-full { left: 100%; }
+
+.push-third { left: 33% }
+.push-two-third { left: 66%; }
+
+.pull-fourth { right: 25%; }
+.pull-half { right: 50%; }
+.pull-three-fourth { right: 75%; }
+.pull-full { right: 100%; }
+
+.pull-third { right: 33% }
+.pull-two-third { right: 66%; }
+
+/*  Responsive
+=============================================*/
+@media only screen and (max-width: 768px) {
+	.resp-column-fourth { width: 25% !important; }
+	.resp-column-half { width: 50% !important; }
+	.resp-column-three-fourth { width: 75% !important; }
+	.resp-column-full { width: 100% !important; }
+
+	.resp-column-third { width: 33% !important; }
+	.resp-column-two-third { width: 66% !important; }
+
+	.resp-column-alpha { padding-left: 0 !important; }
+	.resp-column-omega { padding-right: 0 !important; }
+
+	.push-fourth { left: 0; }
+	.push-half { left: 0; }
+	.push-three-fourth { left: 0; }
+	.push-full { left: 0; }
+
+	.push-third { left: 0 }
+	.push-two-third { left: 0; }
+
+	.pull-fourth { right: 0; }
+	.pull-half { right: 0; }
+	.pull-three-fourth { right: 0; }
+	.pull-full { right: 0; }
+
+	.pull-third { right: 0; }
+	.pull-two-third { right: 0; }	
+}
