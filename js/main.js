@@ -134,31 +134,35 @@ org.sidebar =
 	 * Switches the active list.
 	 */
 	switch_list: function() {
-		var list_switches = document.querySelectorAll("#sidebar .switcher a");
+		var list_name_container = document.getElementById("sidebar");
 
-		for (var i = 0; i < list_switches.length; i++) {
-			list_switches[i].addEventListener("click", function(event) { 
-				event.preventDefault();
-				var that = this;
-				var list_id = parseInt(that.getAttribute("data-list-id"));
-				
-				if (that.classList.contains("active")) {
+		list_name_container.addEventListener("click", function(event) {
+			event.preventDefault();
+
+			if (event.target && event.target.matches("a")) {
+				// There is a separate event for this
+				if (event.target.id === "add-new-list") {
 					return;
+				// Active list selected, do nothing
+				} else if (event.target.classList.contains("active")) {
+					return;
+				// User has selected a list to change to 
 				} else {
+					var list_id = parseInt(event.target.getAttribute('data-list-id'));
+
 					// Giving ative status to selected list
 					document.querySelector("#sidebar .switcher a.active").classList.remove('active');
-					that.classList.add('active');
+					event.target.classList.add('active');
 
 					// Removing old todos and adding new ones to markup
 					org.list_functions.clear_content();
 					setTimeout(function() {
-						org.list_functions.populate_content(org.list_functions.retrieve_list(list_id))
-					}, 500);
-					
+						org.list_functions.populate_content(org.list_functions.retrieve_list(list_id));
+					}, 500);					
 				}
-			}, false);
-
-		}
+				
+			}
+		});
 	}
 };
 
@@ -365,25 +369,25 @@ org.list_functions =
 		}
 
 		// Updating in markup
-			var entry = document.createElement("div");
-			var input = document.createElement("input");
-			var label = document.createElement("label");
-			var label_text = document.createTextNode(new_todo["text"]);
+		var entry = document.createElement("div");
+		var input = document.createElement("input");
+		var label = document.createElement("label");
+		var label_text = document.createTextNode(new_todo["text"]);
 
-			entry.classList.add("list-entry");
-			entry.setAttribute("data-todo-id", new_todo["id"]);
+		entry.classList.add("list-entry");
+		entry.setAttribute("data-todo-id", new_todo["id"]);
 
-			input.type = "checkbox";
-			input.name = "item-" + new_todo["id"];
-			input.id = "item-" + new_todo["id"];
+		input.type = "checkbox";
+		input.name = "item-" + new_todo["id"];
+		input.id = "item-" + new_todo["id"];
 
-			label.setAttribute("for", "item-" + new_todo["id"]);
-			label.appendChild(label_text);
+		label.setAttribute("for", "item-" + new_todo["id"]);
+		label.appendChild(label_text);
 
-			entry.appendChild(input);
-			entry.appendChild(label);
+		entry.appendChild(input);
+		entry.appendChild(label);
 
-			org.list_functions.active.insertBefore(entry, org.list_functions.active.childNodes[org.list_functions.active.childNodes.length-2]);
+		org.list_functions.active.insertBefore(entry, org.list_functions.active.childNodes[org.list_functions.active.childNodes.length-2]);
 	},
 
 
