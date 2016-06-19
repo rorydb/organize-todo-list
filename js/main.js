@@ -206,6 +206,7 @@ org.list_functions =
 	{
 		org.list_functions.populate_sidebar();
 		org.list_functions.default_list();
+		org.list_functions.make_todo_from_text();
 	},
 
 	/**
@@ -417,7 +418,15 @@ org.list_functions =
 		var text_box = document.getElementById("new-entry");
 		var entry_btn = document.getElementById("submit-new-entry");
 
+		entry_btn.addEventListener("click", function(event) {
+			event.preventDefault();
 
+			if (text_box.value.length > 0) {
+				org.list_functions.create_todo(text_box.value);
+			} else {
+				return;
+			}
+		});
 	},
 
 
