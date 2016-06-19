@@ -283,41 +283,46 @@ org.list_functions =
 		list_title.innerHTML = '';
 		list_title.appendChild(list_name);
 
-		// Iterating over each todo and creating markup
-		todos.forEach( function(todo) {
-			var entry = document.createElement("div");
-			var input = document.createElement("input");
-			var label = document.createElement("label");
-			var label_text = document.createTextNode(todo["text"]);
+		if (todos.length === 0) {
+			org.list_functions.update_count();
+		} else {
+			// Iterating over each todo and creating markup
+			todos.forEach( function(todo) {
+				var entry = document.createElement("div");
+				var input = document.createElement("input");
+				var label = document.createElement("label");
+				var label_text = document.createTextNode(todo["text"]);
 
-			entry.classList.add("list-entry");
-			entry.setAttribute("data-todo-id", todo["id"]);
+				entry.classList.add("list-entry");
+				entry.setAttribute("data-todo-id", todo["id"]);
 
-			input.type = "checkbox";
-			input.name = "item-" + todo["id"];
-			input.id = "item-" + todo["id"];
+				input.type = "checkbox";
+				input.name = "item-" + todo["id"];
+				input.id = "item-" + todo["id"];
 
-			label.setAttribute("for", "item-" + todo["id"]);
-			label.appendChild(label_text);
+				label.setAttribute("for", "item-" + todo["id"]);
+				label.appendChild(label_text);
 
-			entry.appendChild(input);
-			entry.appendChild(label);
+				entry.appendChild(input);
+				entry.appendChild(label);
 
-			// Adding todo to respective section of list
-			if (todo["complete"] === true) {
-				input.setAttribute("checked", "checked");
-				org.list_functions.completed.insertBefore(entry, org.list_functions.completed.childNodes[org.list_functions.completed.childNodes.length-2]);
-			}
-			else {
-				org.list_functions.active.insertBefore(entry, org.list_functions.active.childNodes[org.list_functions.active.childNodes.length-2]);
-			}
+				// Adding todo to respective section of list
+				if (todo["complete"] === true) {
+					input.setAttribute("checked", "checked");
+					org.list_functions.completed.insertBefore(entry, org.list_functions.completed.childNodes[org.list_functions.completed.childNodes.length-2]);
+				}
+				else {
+					org.list_functions.active.insertBefore(entry, org.list_functions.active.childNodes[org.list_functions.active.childNodes.length-2]);
+				}
 
-			todo_callback_counter++;
+				todo_callback_counter++;
 
-			if (todo_callback_counter === todos.length) {
-				org.list_functions.update_count();
-			}
-		});
+				if (todo_callback_counter === todos.length) {
+					org.list_functions.update_count();
+				}
+			});
+		}
+
 	},
 
 	/**
