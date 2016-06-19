@@ -362,13 +362,14 @@ org.list_functions =
 	 */
 	create_todo: function(text)
 	{
-		var current_list = org.list_functions.retrieve_list(parseInt(document.getElementById("the-list").getAttribute("data-list-id")));
-		var new_id = current_list["todos"].length + 1;
-		var new_todo = new org.Todo(new_id, text);
+		var current_list = parseInt(document.getElementById("the-list").getAttribute("data-list-id"));	
 
 		// Updating in array
 		for (var i in org.list_data) {
-			if (parseInt(org.list_data[i]["id"]) === parseInt(current_list["id"])) {
+			if (parseInt(org.list_data[i]["id"]) === current_list) {
+				var new_id = org.list_data[i]["todos"].length + 1;
+				var new_todo = new org.Todo(new_id, text);
+				
 				org.list_data[i]["todos"].push(new_todo);
 			}
 		}
@@ -393,6 +394,7 @@ org.list_functions =
 		entry.appendChild(label);
 
 		org.list_functions.active.insertBefore(entry, org.list_functions.active.childNodes[org.list_functions.active.childNodes.length-2]);
+		org.list_functions.update_count();
 	},
 
 
@@ -407,6 +409,17 @@ org.list_functions =
 
 		return list[0];
 	},
+
+	/**
+	 * Turns text from text field into a new todo in the list data
+	 */ 
+	make_todo_from_text: function() {
+		var text_box = document.getElementById("new-entry");
+		var entry_btn = document.getElementById("submit-new-entry");
+
+
+	},
+
 
 	/**
 	 * Moves todos from active to completed sections, and vice versa
