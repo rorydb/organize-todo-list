@@ -424,6 +424,7 @@ org.list_functions =
 
 			if (text_box.value.length > 0) {
 				org.list_functions.create_todo(text_box.value);
+				text_box.value = '';
 			} else {
 				return;
 			}
@@ -461,7 +462,7 @@ org.list_functions =
 					this.remove();
 					org.list_functions.update_count();
 				});
-				
+
 				event.target.parentNode.style.opacity = 0;
 			}
 			else {
