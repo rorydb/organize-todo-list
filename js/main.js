@@ -457,7 +457,11 @@ org.list_functions =
 
 				append_reference.parentNode.insertBefore(move_this, append_reference);
 
-				event.target.parentNode.addEventListener("transitionend", function() { this.remove(); });
+				event.target.parentNode.addEventListener("transitionend", function() { 
+					this.remove();
+					org.list_functions.update_count();
+				});
+				
 				event.target.parentNode.style.opacity = 0;
 			}
 			else {
