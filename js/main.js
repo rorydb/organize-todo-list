@@ -207,6 +207,7 @@ org.list_functions =
 		org.list_functions.populate_sidebar();
 		org.list_functions.default_list();
 		org.list_functions.make_todo_from_text();
+		org.list_functions.toggle_status();
 	},
 
 	/**
@@ -431,10 +432,38 @@ org.list_functions =
 
 
 	/**
-	 * Moves todos from active to completed sections, and vice versa
+	 * Moves todos from active to completed sections, and vice versa. Updates them in org.list_data
 	 */
 	toggle_status: function() {
+		document.getElementById("the-list").addEventListener("click", function(event) {
 
+			if ( event.target && (event.target.matches("input") && event.target["type"] === "checkbox") ) {
+				
+				// Updating object status
+				var list_id = parseInt(document.getElementById("the-list").getAttribute("data-list-id"));
+				var todo_id = parseInt(event.target.parentNode.getAttribute("data-todo-id"));
+				var todo_obj = org.list_data[list_id-1]["todos"][todo_id-1];
+
+				todo_obj.complete = !todo_obj.complete;
+
+				// Updating placement in markup
+				var move_this = event.target.parentNode.cloneNode(true);
+
+				if (todo_obj.complete) {
+					var append_reference = document.getElementById("complete").lastElementChild;
+				} else {
+					var append_reference = document.getElementById("active").lastElementChild;
+				}
+
+				append_reference.parentNode.insertBefore(move_this, append_reference);
+
+				event.target.parentNode.addEventListener("transitionend", function() { this.remove(); });
+				event.target.parentNode.style.opacity = 0;
+			}
+			else {
+				return;
+			}			
+		});
 	},
 
 	/**
