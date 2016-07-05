@@ -78,20 +78,20 @@ org.sidebar =
 {
 	init: function()
 	{
-		theBurg = document.getElementById('hamburger');
-		theBurg.addEventListener('click', org.sidebar.moveSidebar, false);
+		theBurg = document.getElementById("hamburger");
+		theBurg.addEventListener("click", org.sidebar.moveSidebar, false);
 		org.sidebar.add_button();
 		org.sidebar.switch_list();
 	},
 
 	moveSidebar: function() 
 	{
-		var list = document.getElementById('the-list');
-		var move_these = document.querySelectorAll('#hamburger, #the-list, #sidebar');
+		var list = document.getElementById("the-list");
+		var move_these = document.querySelectorAll("#hamburger, #the-list, #sidebar");
 
 		for (var i = 0; i < move_these.length; i++) {
 			var elem = move_these[i];
-			elem.classList.toggle('open');
+			elem.classList.toggle("open");
 		}
 	},
 
@@ -100,17 +100,17 @@ org.sidebar =
 	 */ 
 	add_button: function() 
 	{
-		var btn = document.getElementById('add-new-list');
+		var btn = document.getElementById("add-new-list");
 
-		btn.addEventListener('click', function(event) {
+		btn.addEventListener("click", function(event) {
 			event.preventDefault();
 
 			// Button has not yet been pressed, create a textbox for a new list
-			if (!btn.classList.contains('active')) {
-				var naming_area = document.createElement('input');
+			if (!btn.classList.contains("active")) {
+				var naming_area = document.createElement("input");
 				var parent = btn.parentNode;
 
-				btn.classList.add('active');
+				btn.classList.add("active");
 				naming_area.type = "text";
 				naming_area.id = "new-list-name";
 				naming_area.placeholder = "Enter list name here";
@@ -148,11 +148,11 @@ org.sidebar =
 					return;
 				// User has selected a list to change to 
 				} else {
-					var list_id = parseInt(event.target.getAttribute('data-list-id'));
+					var list_id = parseInt(event.target.getAttribute("data-list-id"));
 
 					// Giving ative status to selected list
-					document.querySelector("#sidebar .switcher a.active").classList.remove('active');
-					event.target.classList.add('active');
+					document.querySelector("#sidebar .switcher a.active").classList.remove("active");
+					event.target.classList.add("active");
 
 					// Removing old todos and adding new ones to markup
 					org.list_functions.clear_content();
@@ -169,9 +169,9 @@ org.sidebar =
 
 org.content_height = 
 {
-	content: document.querySelectorAll('#the-list, #sidebar > nav'),
-	footer: document.querySelector('footer'),
-	new_height: '',
+	content: document.querySelectorAll("#the-list, #sidebar > nav"),
+	footer: document.querySelector("footer"),
+	new_height: "",
 
 	init: function()
 	{
@@ -180,7 +180,7 @@ org.content_height =
 	},
 
 	calculate_height: function() {
- 		org.content_height.new_height = (window.innerHeight - org.content_height.footer.offsetHeight) + 'px';
+ 		org.content_height.new_height = (window.innerHeight - org.content_height.footer.offsetHeight) + "px";
 
 		for (var i = 0; i < org.content_height.content.length; i++) {
 			var elem = org.content_height.content[i];
@@ -190,7 +190,7 @@ org.content_height =
 	},
 
 	resize: function() {
-		window.addEventListener('resize', function(){
+		window.addEventListener("resize", function(){
 			org.content_height.calculate_height();
 		}, false);
 	}
@@ -199,8 +199,8 @@ org.content_height =
 
 org.list_functions = 
 {
-	active: document.getElementById('active'),
-	completed: document.getElementById('complete'),
+	active: document.getElementById("active"),
+	completed: document.getElementById("complete"),
 
 	init: function ()
 	{
@@ -235,18 +235,18 @@ org.list_functions =
 		if (list_object === undefined) {
 			return;
 		} else {
-			var list_of_lists = document.querySelector('#sidebar nav ul');
-			var li_markup = document.createElement('li');
-			var new_anchor = document.createElement('a');
+			var list_of_lists = document.querySelector("#sidebar nav ul");
+			var li_markup = document.createElement("li");
+			var new_anchor = document.createElement("a");
 			var list_name = document.createTextNode(list_object["list_name"]);
 
 			// Adding attributes and list name to anchor
 			new_anchor.href = "#";
-			new_anchor.setAttribute('data-list-id', list_object["id"]);
+			new_anchor.setAttribute("data-list-id", list_object["id"]);
 			new_anchor.appendChild(list_name);
 
 			if (list_object["default"] === true) {
-				new_anchor.classList.add('active');
+				new_anchor.classList.add("active");
 			}
 
 			li_markup.classList.add("switcher");
@@ -282,7 +282,7 @@ org.list_functions =
 		var list_name = document.createTextNode(list["list_name"]);
 
 		markup_list.setAttribute("data-list-id", id);
-		list_title.innerHTML = '';
+		list_title.innerHTML = "";
 		list_title.appendChild(list_name);
 
 		if (todos.length === 0) {
@@ -332,7 +332,7 @@ org.list_functions =
 	 */
 	 clear_content: function() 
 	 {
-	 	var todos = document.querySelectorAll('.list-entry');
+	 	var todos = document.querySelectorAll(".list-entry");
 
 	 	for (var i = 0; i < todos.length; i++) {
 	 		var current = todos[i];
@@ -424,7 +424,7 @@ org.list_functions =
 
 			if (text_box.value.length > 0) {
 				org.list_functions.create_todo(text_box.value);
-				text_box.value = '';
+				text_box.value = "";
 			} else {
 				return;
 			}
@@ -475,11 +475,11 @@ org.list_functions =
 	 * Updates the number of completed and active to-dos
 	 */
 	update_count: function() {
-		var active_count = document.querySelectorAll('#active .list-entry').length;
-		var completed_count = document.querySelectorAll('#complete .list-entry').length;
+		var active_count = document.querySelectorAll("#active .list-entry").length;
+		var completed_count = document.querySelectorAll("#complete .list-entry").length;
 
-		document.getElementById('num-completed').innerHTML = completed_count;
-		document.getElementById('num-active').innerHTML= active_count;
+		document.getElementById("num-completed").innerHTML = completed_count;
+		document.getElementById("num-active").innerHTML= active_count;
 	}
 }
 
@@ -488,7 +488,7 @@ org.list_functions =
 
 
 // Initializations
-document.addEventListener('DOMContentLoaded' , function () {
+document.addEventListener("DOMContentLoaded" , function () {
 	org.list_functions.init();
 	org.sidebar.init();
 	org.content_height.init();
