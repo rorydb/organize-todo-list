@@ -160,6 +160,8 @@ org.sidebar =
 						org.list_functions.populate_content(org.list_functions.retrieve_list(list_id));
 					}, 500);					
 				}
+
+				org.sidebar.moveSidebar();
 				
 			}
 		});
