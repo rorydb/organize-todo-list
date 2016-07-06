@@ -116,18 +116,36 @@ org.sidebar =
 				naming_area.placeholder = "Enter list name here";
 
 				parent.insertBefore(naming_area, btn);
-			} else {
-				var naming_area = document.getElementById("new-list-name");
 
-				// nothing has been entered
-				if (naming_area.value.length === 0) {
-					return;
-				} else {
-					org.list_functions.create_list(naming_area.value);
-					naming_area.parentNode.removeChild(naming_area);
-				}
+				// Enter key to create list
+				naming_area.addEventListener("keyup", function(event) {
+					if (event.keyCode === 13) {
+						event.preventDefault();
+						submit_list();
+					} else {
+						return;
+					}
+
+				});
+			} else {
+				submit_list();
+				btn.classList.remove("active");
 			}
 		}, false);
+
+		var submit_list = function() {
+			var naming_area = document.getElementById("new-list-name");
+
+			// nothing has been entered
+			if (naming_area.value.length === 0) {
+				return;
+			} else {
+				org.list_functions.create_list(naming_area.value);
+				naming_area.parentNode.removeChild(naming_area);
+			}
+		}
+
+
 	},
 
 	/**
@@ -423,14 +441,27 @@ org.list_functions =
 
 		entry_btn.addEventListener("click", function(event) {
 			event.preventDefault();
+			submit_todo();
+		});
 
+		// Enter Key
+		text_box.addEventListener("keyup", function(event) {
+			if (event.keyCode === 13) {
+				event.preventDefault();
+				submit_todo();
+			} else {
+				return;
+			}
+		});
+
+		var submit_todo = function() {
 			if (text_box.value.length > 0) {
 				org.list_functions.create_todo(text_box.value);
 				text_box.value = "";
 			} else {
 				return;
 			}
-		});
+		}
 	},
 
 
