@@ -118,7 +118,7 @@ org.sidebar =
 				parent.insertBefore(naming_area, btn);
 
 				// Enter key to create list
-				naming_area.addEventListener("keyup", function(event) {
+				naming_area.addEventListener("keydown", function(event) {
 					if (event.keyCode === 13) {
 						event.preventDefault();
 						submit_list();
@@ -445,7 +445,7 @@ org.list_functions =
 		});
 
 		// Enter Key
-		text_box.addEventListener("keyup", function(event) {
+		text_box.addEventListener("keydown", function(event) {
 			if (event.keyCode === 13) {
 				event.preventDefault();
 				submit_todo();
