@@ -440,6 +440,9 @@ org.list_functions =
 
 			if ( event.target && (event.target.matches("input") && event.target["type"] === "checkbox") ) {
 				
+				// Has already been clicked, do nothing
+				if (event.target.parentNode.classList.contains('removing')) { return; }
+
 				// Updating object status
 				var list_id = parseInt(document.getElementById("the-list").getAttribute("data-list-id"));
 				var todo_id = parseInt(event.target.parentNode.getAttribute("data-todo-id"));
@@ -463,6 +466,7 @@ org.list_functions =
 					org.list_functions.update_count();
 				});
 
+				event.target.parentNode.classList.add('removing');
 				event.target.parentNode.style.opacity = 0;
 			}
 			else {
